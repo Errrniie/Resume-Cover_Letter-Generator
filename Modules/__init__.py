@@ -1,3 +1,23 @@
+from .Application_Tracker import (
+    ApplicationRecord,
+    application_stats,
+    ensure_workbook,
+    load_application_log,
+    record_cover_letter_generated,
+    record_job_start,
+    record_resume_generated,
+    tracker_path,
+    try_record_cover_letter_generated,
+    try_record_job_start,
+    try_record_resume_generated,
+)
+from .Application_Delete import (
+    DeleteResult,
+    delete_application_file,
+    delete_position_folder,
+    is_deletable_application_path,
+    paired_output_paths,
+)
 from .Application_Path import resolve_application_path, resolve_application_path_from_data
 from .Job_Md import (
     JobMdSaveResult,
@@ -23,12 +43,26 @@ from .Fill_Resume import ResumeData, fill_resume, load_json, parse_resume_data
 from .Trim_Resume import TrimResult, TrimState, initial_trim_state, trim_one_bullet
 
 __all__ = [
+    "ApplicationRecord",
+    "application_stats",
     "CoverLetterData",
+    "DeleteResult",
     "JobMdSaveResult",
     "ResumeData",
     "ResumeMdSaveResult",
     "TrimResult",
     "TrimState",
+    "ensure_workbook",
+    "load_application_log",
+    "record_cover_letter_generated",
+    "record_job_start",
+    "record_resume_generated",
+    "tracker_path",
+    "try_record_cover_letter_generated",
+    "try_record_job_start",
+    "try_record_resume_generated",
+    "delete_application_file",
+    "delete_position_folder",
     "fill_cover_letter",
     "fill_resume",
     "format_job_md_content",
@@ -36,9 +70,11 @@ __all__ = [
     "get_current_job_md_path",
     "get_current_resume_md_path",
     "initial_trim_state",
+    "is_deletable_application_path",
     "job_md_root",
     "load_json",
     "parse_cover_letter_data",
+    "paired_output_paths",
     "parse_resume_data",
     "resolve_application_path",
     "resolve_application_path_from_data",

@@ -1,0 +1,14 @@
+2026-05-27 23:59:03 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Catalyst Acoustics Holdings\Resume_Catalyst_Acoustics_Holdings_DesignerDrafter_2026-05-27.log (document_type=resume)
+2026-05-27 23:59:03 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\catalyst_acoustics_holdings_resume.json
+2026-05-27 23:59:03 INFO [resume.pipeline] Metadata validation passed
+2026-05-27 23:59:03 INFO [resume.pipeline] Bullet validation passed
+2026-05-27 23:59:03 INFO [resume.pipeline] Resume snapshot MD: C:\Users\EMCar\Desktop\Resume Script\Resume_MD\resume_007.md
+2026-05-27 23:59:03 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Catalyst Acoustics Holdings\DesignerDrafter
+2026-05-27 23:59:03 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Catalyst Acoustics Holdings\DesignerDrafter\Ernesto_Carlton_Resume_Catalyst_Acoustics_Holdings_DesignerDrafter.docx
+2026-05-27 23:59:09 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Catalyst Acoustics Holdings\DesignerDrafter\Ernesto_Carlton_Resume_Catalyst_Acoustics_Holdings_DesignerDrafter.pdf
+2026-05-27 23:59:09 WARNING [resume.pipeline] WARNING pages: 2 pages in Ernesto_Carlton_Resume_Catalyst_Acoustics_Holdings_DesignerDrafter.pdf (limit 1 for resume)
+2026-05-27 23:59:09 INFO [resume.pipeline] Page check (OVER LIMIT): 2 page(s) (limit 1)
+2026-05-27 23:59:09 INFO [resume.pipeline] Trim: removed bullet from greenway: Coordinated a 3-person operation with equipment logistics, scheduling, quality control, and recurring planning meetings approximately twice per week.
+2026-05-27 23:59:13 INFO [resume.pipeline] Trim: removed bullet from windturbine: Performed 6 wind turbine inspections with professional engineers, supporting equipment reliability review, drawing-based troubleshooting, and configuration understanding for long-term operation.
+2026-05-27 23:59:15 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-27 23:59:15 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

@@ -1,0 +1,13 @@
+2026-05-27 22:46:58 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Sargent & Lundy\Resume_Sargent_&_Lundy_3D_Modeler_–_Entry_Level_–_Nuclear_Power_Projects_2026-05-27.log (document_type=resume)
+2026-05-27 22:46:58 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\sargent_lundy_resume.json
+2026-05-27 22:46:58 INFO [resume.pipeline] Metadata validation passed
+2026-05-27 22:46:58 INFO [resume.pipeline] Bullet validation passed
+2026-05-27 22:46:58 INFO [resume.pipeline] Resume snapshot MD: C:\Users\EMCar\Desktop\Resume Script\Resume_MD\resume_005.md
+2026-05-27 22:46:58 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Sargent & Lundy\3D Modeler – Entry Level – Nuclear Power Projects
+2026-05-27 22:46:58 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Sargent & Lundy\3D Modeler – Entry Level – Nuclear Power Projects\Ernesto_Carlton_Resume_Sargent_&_Lundy_3D_Modeler_–_Entry_Level_–_Nuclear_Power_Projects.docx
+2026-05-27 22:47:05 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Sargent & Lundy\3D Modeler – Entry Level – Nuclear Power Projects\Ernesto_Carlton_Resume_Sargent_&_Lundy_3D_Modeler_–_Entry_Level_–_Nuclear_Power_Projects.pdf
+2026-05-27 22:47:05 WARNING [resume.pipeline] WARNING pages: 2 pages in Ernesto_Carlton_Resume_Sargent_&_Lundy_3D_Modeler_–_Entry_Level_–_Nuclear_Power_Projects.pdf (limit 1 for resume)
+2026-05-27 22:47:05 INFO [resume.pipeline] Page check (OVER LIMIT): 2 page(s) (limit 1)
+2026-05-27 22:47:05 INFO [resume.pipeline] Trim: removed bullet from greenway: Coordinated a 3-person operation with equipment logistics, scheduling, quality control, and recurring planning meetings twice per week.
+2026-05-27 22:47:09 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-27 22:47:09 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

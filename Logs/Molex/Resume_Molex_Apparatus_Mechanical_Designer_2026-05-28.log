@@ -1,0 +1,18 @@
+2026-05-28 01:06:21 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Molex\Resume_Molex_Apparatus_Mechanical_Designer_2026-05-28.log (document_type=resume)
+2026-05-28 01:06:21 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\molex_resume.json
+2026-05-28 01:06:21 INFO [resume.pipeline] Metadata validation passed
+2026-05-28 01:06:21 INFO [resume.pipeline] Bullet validation passed
+2026-05-28 01:06:21 INFO [resume.pipeline] Resume snapshot MD: C:\Users\EMCar\Desktop\Resume Script\Resume_MD\resume_010.md
+2026-05-28 01:06:21 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Molex\Apparatus Mechanical Designer
+2026-05-28 01:06:21 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Molex\Apparatus Mechanical Designer\Ernesto_Carlton_Resume_Molex_Apparatus_Mechanical_Designer.docx
+2026-05-28 01:06:26 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Molex\Apparatus Mechanical Designer\Ernesto_Carlton_Resume_Molex_Apparatus_Mechanical_Designer.pdf
+2026-05-28 01:06:26 WARNING [resume.pipeline] WARNING pages: 2 pages in Ernesto_Carlton_Resume_Molex_Apparatus_Mechanical_Designer.pdf (limit 1 for resume)
+2026-05-28 01:06:26 INFO [resume.pipeline] Page check (OVER LIMIT): 2 page(s) (limit 1)
+2026-05-28 01:06:26 INFO [resume.pipeline] Trim: removed bullet from greenway: Performed near-daily diagnostics, repair, and preventive maintenance on operational equipment, improving reliability and reducing downtime during seasonal operations.
+2026-05-28 01:06:46 INFO [resume.pipeline] Trim: removed bullet from windturbine: Produced organized engineering records, procedural documentation, and technical references supporting standards compliance, equipment servicing, and cross-functional coordination.
+2026-05-28 01:06:52 INFO [resume.pipeline] Trim: removed bullet from peizo: Collaborated with graduate-level research personnel to optimize modular assembly geometry, fabrication tolerances, and prototype fitment for repeatable wind tunnel validation.
+2026-05-28 01:06:54 INFO [resume.pipeline] Trim: removed bullet from mostardi: Maintained organized technical records and coordinated with engineers during near-weekly field deployments supporting compliance-focused operational reliability.
+2026-05-28 01:06:58 INFO [resume.pipeline] Trim: removed bullet from goose: Documented fabrication tolerances, assembly procedures, and dimensional integration requirements while validating mechanical systems through iterative deployment testing across 160,000 ft².
+2026-05-28 01:07:02 INFO [resume.pipeline] Trim: removed bullet from greenway: Managed maintenance scheduling, equipment logistics, and operational coordination across a 3-person team utilizing more than 8 active mechanical systems.
+2026-05-28 01:07:05 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-28 01:07:05 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

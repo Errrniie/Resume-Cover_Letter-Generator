@@ -393,14 +393,36 @@ Without `--cover-letter`, a JSON path runs the **resume** pipeline only.
 
 ---
 
-## 16. CLI only — `Main.main()`
+## 16. Application file delete — `Modules.Application_Delete`
+
+**Does not run pipelines.** Used by GUI (later) to remove generated outputs under `Applications/`.
+
+| # | Condition | Exception / result |
+|---|-----------|-------------------|
+| 16.1 | Path outside `Applications/` | `ValueError` — `Path is not under Applications/` |
+| 16.2 | Not `.docx` or `.pdf` | `ValueError` |
+| 16.3 | Path is a directory (single-file delete) | `ValueError` — `Path is not a file` |
+| 16.4 | Primary file missing | `FileNotFoundError` |
+| 16.5 | Paired sibling missing (`--pair`) | `DeleteResult.skipped` |
+| 16.6 | Delete succeeds | `DeleteResult.deleted` |
+| 16.7 | OS error on unlink | `DeleteResult.errors` (non-fatal entry) |
+
+**CLI:** `python Modules/Application_Delete.py path\to\file.docx [--pair]`
+
+**Position folder:** `delete_position_folder()` removes `Applications/{company}/{position}/` (validated two levels below root).
+
+**Source:** `Modules/Application_Delete.py`
+
+---
+
+## 17. CLI only — `Main.main()`
 
 | # | Condition | Behavior |
 |---|-----------|----------|
-| 16.1 | Invalid CLI arguments | `argparse` exits with usage help |
-| 16.2 | Resume pipeline failure | Catches `FileNotFoundError`, `ValueError`, `JSONDecodeError`, `RuntimeError` → prints `Error: {exc}` → exit code `1` |
-| 16.3 | `--cover-letter` without JSON path | Prints error → exit code `1` |
-| 16.4 | Cover letter pipeline failure | Same exceptions as resume CLI → exit code `1` |
+| 17.1 | Invalid CLI arguments | `argparse` exits with usage help |
+| 17.2 | Resume pipeline failure | Catches `FileNotFoundError`, `ValueError`, `JSONDecodeError`, `RuntimeError` → prints `Error: {exc}` → exit code `1` |
+| 17.3 | `--cover-letter` without JSON path | Prints error → exit code `1` |
+| 17.4 | Cover letter pipeline failure | Same exceptions as resume CLI → exit code `1` |
 
 **Not caught by CLI today:** `OSError`, `PermissionError`, Word/COM errors, most `python-docx` errors → uncaught traceback.
 

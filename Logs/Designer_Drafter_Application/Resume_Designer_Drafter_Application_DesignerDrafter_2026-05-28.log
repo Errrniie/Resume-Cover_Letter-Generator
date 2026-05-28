@@ -1,0 +1,18 @@
+2026-05-28 00:29:54 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Designer_Drafter_Application\Resume_Designer_Drafter_Application_DesignerDrafter_2026-05-28.log (document_type=resume)
+2026-05-28 00:29:54 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\designer_drafter_resume.json
+2026-05-28 00:29:54 INFO [resume.pipeline] Metadata validation passed
+2026-05-28 00:29:54 INFO [resume.pipeline] Bullet validation passed
+2026-05-28 00:29:54 INFO [resume.pipeline] Resume snapshot MD: C:\Users\EMCar\Desktop\Resume Script\Resume_MD\resume_008.md
+2026-05-28 00:29:54 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Designer_Drafter_Application\DesignerDrafter
+2026-05-28 00:29:54 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Designer_Drafter_Application\DesignerDrafter\Ernesto_Carlton_Resume_Designer_Drafter_Application_DesignerDrafter.docx
+2026-05-28 00:30:00 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Designer_Drafter_Application\DesignerDrafter\Ernesto_Carlton_Resume_Designer_Drafter_Application_DesignerDrafter.pdf
+2026-05-28 00:30:00 WARNING [resume.pipeline] WARNING pages: 2 pages in Ernesto_Carlton_Resume_Designer_Drafter_Application_DesignerDrafter.pdf (limit 1 for resume)
+2026-05-28 00:30:00 INFO [resume.pipeline] Page check (OVER LIMIT): 2 page(s) (limit 1)
+2026-05-28 00:30:00 INFO [resume.pipeline] Trim: removed bullet from greenway: Performed near-daily diagnostics, repair, and preventive maintenance on mechanical equipment, supporting operational reliability and organized workflow coordination.
+2026-05-28 00:30:04 INFO [resume.pipeline] Trim: removed bullet from windturbine: Produced organized technical records and operational documentation packages supporting equipment safety assessment, maintenance coordination, and standards-focused engineering communication.
+2026-05-28 00:30:06 INFO [resume.pipeline] Trim: removed bullet from peizo: Collaborated with graduate-level research personnel to refine actuator geometry, fabrication tolerances, and modular assembly requirements for repeatable aerodynamic testing workflows.
+2026-05-28 00:30:10 INFO [resume.pipeline] Trim: removed bullet from mostardi: Maintained organized testing records and coordinated with plant engineers during near-weekly field deployments supporting compliance-focused technical operations.
+2026-05-28 00:30:14 INFO [resume.pipeline] Trim: removed bullet from goose: Documented fabrication requirements, mounting tolerances, and system integration procedures while validating mechanical assemblies through iterative testing across approximately 160,000 ft² deployment coverage.
+2026-05-28 00:30:29 INFO [resume.pipeline] Trim: removed bullet from greenway: Managed operational scheduling, equipment logistics, and maintenance documentation across a 3-person landscaping team utilizing more than 8 active equipment systems.
+2026-05-28 00:30:33 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-28 00:30:33 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

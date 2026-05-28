@@ -1,0 +1,16 @@
+2026-05-28 00:55:16 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\viaPhoton\CoverLetter_viaPhoton_Mechanical_Design_Engineer_2026-05-28.log (document_type=cover_letter)
+2026-05-28 00:55:16 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Downloads\viaphoton_cover_letter.json
+2026-05-28 00:55:16 INFO [resume.cover_letter] Cover letter validation passed
+2026-05-28 00:55:16 INFO [resume.cover_letter] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\viaPhoton\Mechanical Design Engineer
+2026-05-28 00:55:16 INFO [resume.cover_letter] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\viaPhoton\Mechanical Design Engineer\Ernesto_Carlton_Cover_Letter_viaPhoton_Mechanical_Design_Engineer.docx
+2026-05-28 00:55:21 INFO [resume.cover_letter] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\viaPhoton\Mechanical Design Engineer\Ernesto_Carlton_Cover_Letter_viaPhoton_Mechanical_Design_Engineer.pdf
+2026-05-28 00:55:21 INFO [resume.cover_letter] Page check (OK): 1 page(s) (limit 1)
+2026-05-28 00:55:21 INFO [resume.cover_letter] Cover letter run finished (over_page_limit=False, page_check_skipped=False)
+2026-05-28 01:10:28 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\viaPhoton\CoverLetter_viaPhoton_Mechanical_Design_Engineer_2026-05-28.log (document_type=cover_letter)
+2026-05-28 01:10:28 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Downloads\viaphoton_cover_letter.json
+2026-05-28 01:10:28 INFO [resume.cover_letter] Cover letter validation passed
+2026-05-28 01:10:28 INFO [resume.cover_letter] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\viaPhoton\Mechanical Design Engineer
+2026-05-28 01:10:28 INFO [resume.cover_letter] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\viaPhoton\Mechanical Design Engineer\Ernesto_Carlton_Cover_Letter_viaPhoton_Mechanical_Design_Engineer_2.docx
+2026-05-28 01:10:29 INFO [resume.cover_letter] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\viaPhoton\Mechanical Design Engineer\Ernesto_Carlton_Cover_Letter_viaPhoton_Mechanical_Design_Engineer_2.pdf
+2026-05-28 01:10:29 INFO [resume.cover_letter] Page check (OK): 1 page(s) (limit 1)
+2026-05-28 01:10:29 INFO [resume.cover_letter] Cover letter run finished (over_page_limit=False, page_check_skipped=False)

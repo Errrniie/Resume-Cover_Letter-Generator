@@ -13,6 +13,7 @@ import queue
 import subprocess
 import sys
 import threading
+from datetime import datetime
 from pathlib import Path
 from tkinter import messagebox, ttk
 
@@ -31,7 +32,7 @@ from Main import (
     run_pipeline,
 )
 from config.Cover_Letter_Validator import validate_cover_letter_json_file
-from config.Pipeline_Progress import CL_PHASE_FAILED, PHASE_FAILED
+from config.Pipeline_Progress import CL_PHASE_FAILED, PHASE_FAILED, PHASE_TRIM
 from config import (
     DEFAULT_SETTINGS_PATH,
     config_from_dict,
@@ -40,17 +41,31 @@ from config import (
     save_config,
 )
 from config.Validator import validate_json_file
+from Modules.Application_Tracker import (
+    ApplicationRecord,
+    application_stats,
+    load_application_log,
+    tracker_path,
+    try_record_job_start,
+)
 from Modules.Job_Md import (
     JobMdSaveResult,
     get_current_job_md_path,
     job_md_root,
     save_temporary_job_md,
 )
+from Modules.Application_Delete import (
+    delete_application_file,
+    delete_position_folder,
+    is_deletable_application_path,
+)
 from Modules.Resume_Md import get_current_resume_md_path, resume_md_root
 
 APPLICATIONS_DIR = MAIN_ROOT / "Applications"
 RESUME_EXTENSIONS = {".docx", ".pdf"}
 APPLICATIONS_PANEL_FONT_SIZE = 15
+APPLICATIONS_TREE_MINSIZE = 600
+COLLAPSIBLE_PANEL_HEIGHT = 100
 SETTINGS_NUMBER_ENTRY_WIDTH = 52
 TRIM_ORDER_SLOTS = 5
 TRIM_REMOVE_DEFAULT = "bullets"
@@ -64,6 +79,24 @@ VIEW_COVER_LETTER = "Cover letter"
 _DOC_TO_VIEW = {DOC_RESUME: VIEW_RESUME, DOC_COVER_LETTER: VIEW_COVER_LETTER}
 RESUME_FILE_PREFIX = "Ernesto_Carlton_Resume"
 COVER_LETTER_FILE_PREFIX = "Ernesto_Carlton_Cover_Letter"
+DELETE_INCLUDE_PAIRED_PDF_DOCX = True
+APPLICATIONS_TAB_NAME = "Applications"
+_TRACKER_COLUMNS = (
+    ("date", "Date", 88),
+    ("company", "Company", 120),
+    ("position", "Position", 140),
+    ("website", "Website", 120),
+    ("url", "URL", 200),
+    ("resume", "Resume", 56),
+    ("cover", "Cover", 56),
+)
+TREE_ROLE_FILE = "file"
+TREE_ROLE_POSITION = "position_folder"
+TREE_ROLE_COMPANY = "company"
+_TREE_KNOWN_ROLES = frozenset(
+    {TREE_ROLE_FILE, TREE_ROLE_POSITION, TREE_ROLE_COMPANY}
+)
+TreeDeleteTarget = tuple[str, Path]
 
 
 def open_with_default_app(path: Path) -> None:
@@ -104,30 +137,181 @@ def open_file_location(path: Path) -> None:
     raise FileNotFoundError(f"Path not found: {path}")
 
 
-def path_for_tree_item(tree: ttk.Treeview, item_id: str) -> Path | None:
-    """Return the file path stored on a tree row, if any."""
-    values = tree.item(item_id, "values")
+def _parse_tree_item_values(values: tuple[str, ...] | list[str]) -> TreeDeleteTarget | None:
+    """Parse (role, path) from tree row values; legacy rows use a bare file path."""
     if not values or not values[0]:
         return None
-    return Path(str(values[0]))
+    if len(values) >= 2 and values[0] in _TREE_KNOWN_ROLES:
+        return values[0], Path(str(values[1])).resolve()
+    return TREE_ROLE_FILE, Path(str(values[0])).resolve()
+
+
+def path_for_tree_item(tree: ttk.Treeview, item_id: str) -> Path | None:
+    """Return the file path stored on a tree row, if any."""
+    parsed = _parse_tree_item_values(tuple(tree.item(item_id, "values")))
+    if parsed is None or parsed[0] != TREE_ROLE_FILE:
+        return None
+    return parsed[1]
+
+
+def _path_is_under(child: Path, parent: Path) -> bool:
+    try:
+        child.resolve().relative_to(parent.resolve())
+        return True
+    except ValueError:
+        return False
+
+
+def resolve_tree_selection(
+    tree: ttk.Treeview,
+) -> tuple[list[TreeDeleteTarget], str | None]:
+    """
+    Build a deduplicated delete plan from tree.selection().
+
+    Each target is ("file", path) or ("position_folder", path).
+    Position folders subsume file rows under them; company nodes expand to positions.
+    """
+    selection = tree.selection()
+    if not selection:
+        return [], "Select one or more files or position folders in the Applications tree."
+
+    file_targets: dict[Path, TreeDeleteTarget] = {}
+    folder_targets: dict[Path, TreeDeleteTarget] = {}
+    company_dirs: list[Path] = []
+    had_non_deletable = False
+
+    for item_id in selection:
+        label = str(tree.item(item_id, "text"))
+        if label in ("Applications", "(folder not created yet)"):
+            had_non_deletable = True
+            continue
+
+        parsed = _parse_tree_item_values(tuple(tree.item(item_id, "values")))
+        if parsed is None:
+            if label in ("Resume", "Cover letter", "Other"):
+                had_non_deletable = True
+            continue
+
+        role, path = parsed
+        if role == TREE_ROLE_FILE:
+            if is_deletable_application_path(path):
+                file_targets[path] = (role, path)
+            else:
+                had_non_deletable = True
+        elif role == TREE_ROLE_POSITION:
+            folder_targets[path] = (role, path)
+        elif role == TREE_ROLE_COMPANY:
+            company_dirs.append(path)
+
+    for company_dir in company_dirs:
+        if not company_dir.is_dir():
+            continue
+        for position_dir in sorted(company_dir.iterdir()):
+            if position_dir.is_dir():
+                resolved = position_dir.resolve()
+                folder_targets[resolved] = (TREE_ROLE_POSITION, resolved)
+
+    if folder_targets:
+        file_targets = {
+            key: value
+            for key, value in file_targets.items()
+            if not any(_path_is_under(key, folder) for folder in folder_targets)
+        }
+
+    targets = list(folder_targets.values()) + list(file_targets.values())
+
+    if not targets:
+        return [], (
+            "Cannot delete the Applications root, company row alone, or group folders. "
+            "Select .docx/.pdf files, a position folder, or a company to remove all "
+            "positions under it."
+        )
+
+    info = None
+    if had_non_deletable:
+        info = "Some selected items were skipped (not deletable)."
+    return targets, info
+
+
+def delete_plan_confirm_message(targets: list[TreeDeleteTarget]) -> str:
+    """Summary text for askyesno before delete."""
+    folders = [path for role, path in targets if role == TREE_ROLE_POSITION]
+    files = [path for role, path in targets if role == TREE_ROLE_FILE]
+    lines = ["Delete the following?"]
+    if folders:
+        lines.append(f"\n{len(folders)} position folder(s) (all contents):")
+        for folder in folders[:8]:
+            lines.append(f"  • {folder.parent.name} / {folder.name}")
+        if len(folders) > 8:
+            lines.append(f"  … and {len(folders) - 8} more")
+    if files:
+        lines.append(f"\n{len(files)} file(s):")
+        for file_path in files[:10]:
+            lines.append(f"  • {file_path.name}")
+        if len(files) > 10:
+            lines.append(f"  … and {len(files) - 10} more")
+        if DELETE_INCLUDE_PAIRED_PDF_DOCX:
+            lines.append("\nMatching .docx/.pdf pairs will be deleted when present.")
+    return "\n".join(lines)
+
+
+def _parse_tracker_sort_time(value: str) -> datetime | None:
+    raw = value.strip()
+    if not raw:
+        return None
+    try:
+        return datetime.fromisoformat(raw.replace("Z", "+00:00"))
+    except ValueError:
+        pass
+    for fmt in ("%Y-%m-%d %H:%M:%S.%f", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d"):
+        try:
+            return datetime.strptime(raw[:26], fmt)
+        except ValueError:
+            continue
+    return None
+
+
+def sort_application_records(
+    records: list[ApplicationRecord],
+) -> list[ApplicationRecord]:
+    """Newest first by updated, then date, then row number."""
+
+    def sort_key(record: ApplicationRecord) -> tuple[datetime, int]:
+        for candidate in (record.updated, record.date):
+            parsed = _parse_tracker_sort_time(candidate)
+            if parsed is not None:
+                return (parsed, record.row_number)
+        return (datetime.min, record.row_number)
+
+    return sorted(records, key=sort_key, reverse=True)
+
+
+def try_remove_empty_company_dir(company_dir: Path) -> None:
+    """Remove company folder under Applications/ if it has no entries left."""
+    try:
+        if company_dir.is_dir() and not any(company_dir.iterdir()):
+            company_dir.rmdir()
+    except OSError:
+        pass
 
 
 def format_page_lines(
     result: PipelineResult | CoverLetterPipelineResult,
     *,
     document_label: str = "resume",
-) -> tuple[list[str], list[str]]:
-    """Build status and warning lines from a pipeline result (Error.md §10)."""
+) -> tuple[list[str], list[str], list[str]]:
+    """Build status, warning, and trim lines from a pipeline result (Error.md §10)."""
     status: list[str] = []
     warnings: list[str] = []
+    trim_lines: list[str] = []
 
     if result.page_check_skipped:
         status.append("Page check: skipped (disabled in settings)")
-        return status, warnings
+        return status, warnings, trim_lines
 
     if result.page_count is None:
         status.append("Page count: unavailable (page check did not return a count)")
-        return status, warnings
+        return status, warnings, trim_lines
 
     label = "OVER LIMIT" if result.over_page_limit else "OK"
     status.append(
@@ -140,10 +324,10 @@ def format_page_lines(
         )
     bullets_trimmed = getattr(result, "bullets_trimmed", None)
     if bullets_trimmed:
-        status.append(f"Trimmed {len(bullets_trimmed)} bullet(s) to fit page limit")
+        trim_lines.append(f"Trimmed {len(bullets_trimmed)} bullet(s) to fit page limit")
         for entry in bullets_trimmed:
-            status.append(f"  - {entry}")
-    return status, warnings
+            trim_lines.append(f"  - {entry}")
+    return status, warnings, trim_lines
 
 
 def _classify_application_file(filename: str) -> str | None:
@@ -177,7 +361,13 @@ def populate_applications_tree(
     for company_dir in sorted(APPLICATIONS_DIR.iterdir(), key=lambda p: p.name.lower()):
         if not company_dir.is_dir():
             continue
-        company_id = tree.insert(root_id, "end", text=company_dir.name, open=False)
+        company_id = tree.insert(
+            root_id,
+            "end",
+            text=company_dir.name,
+            open=False,
+            values=(TREE_ROLE_COMPANY, str(company_dir.resolve())),
+        )
 
         for position_dir in sorted(company_dir.iterdir(), key=lambda p: p.name.lower()):
             if not position_dir.is_dir():
@@ -187,7 +377,11 @@ def populate_applications_tree(
                 and position_dir.resolve() == highlight_resolved
             )
             position_id = tree.insert(
-                company_id, "end", text=position_dir.name, open=open_position
+                company_id,
+                "end",
+                text=position_dir.name,
+                open=open_position,
+                values=(TREE_ROLE_POSITION, str(position_dir.resolve())),
             )
             if open_position:
                 tree.item(position_id, tags=("highlight",))
@@ -221,7 +415,7 @@ def populate_applications_tree(
                     parent_id,
                     "end",
                     text=file_path.name,
-                    values=(str(file_path.resolve()),),
+                    values=(TREE_ROLE_FILE, str(file_path.resolve())),
                 )
 
             if resume_count == 0:
@@ -245,9 +439,12 @@ class ResumeGui(ctk.CTk):
         self._active_generation_type = DOC_RESUME
         self._json_entries: dict[str, ctk.CTkEntry] = {}
         self._generate_buttons: dict[str, ctk.CTkButton] = {}
+        self._delete_buttons: dict[str, ctk.CTkButton] = {}
         self._trees: dict[str, ttk.Treeview] = {}
         self._status_boxes: dict[str, ctk.CTkTextbox] = {}
         self._warn_boxes: dict[str, ctk.CTkTextbox] = {}
+        self._trim_boxes: dict[str, ctk.CTkTextbox] = {}
+        self._collapsible_panels: dict[tuple[str, str], dict[str, object]] = {}
         self._progress_labels: dict[str, ctk.CTkLabel] = {}
         self._progress_bars: dict[str, ctk.CTkProgressBar] = {}
         self._tree_style_ready = False
@@ -263,17 +460,19 @@ class ResumeGui(ctk.CTk):
         self._saw_failed_phase = False
         self._start_busy = False
         self._start_last_saved_path: Path | None = None
+        self._last_job_sequence: int | None = None
         self._resume_last_md_path: Path | None = None
 
         self.grid_columnconfigure(0, weight=1)
         self.grid_rowconfigure(0, weight=1)
 
-        self.tabs = ctk.CTkTabview(self)
+        self.tabs = ctk.CTkTabview(self, command=self._on_tab_changed)
         self.tabs.grid(row=0, column=0, sticky="nsew", padx=12, pady=12)
 
         self._build_start_tab(self.tabs.add("Start"))
         self._build_document_tab(self.tabs.add("Resume"), DOC_RESUME)
         self._build_document_tab(self.tabs.add("Cover Letter"), DOC_COVER_LETTER)
+        self._build_applications_tab(self.tabs.add(APPLICATIONS_TAB_NAME))
         self._build_settings_tab(self.tabs.add("Settings"))
 
         self.refresh_tree()
@@ -404,12 +603,16 @@ class ResumeGui(ctk.CTk):
     def _on_start_success(self, result: JobMdSaveResult) -> None:
         self._start_busy = False
         self._start_last_saved_path = result.path
+        self._last_job_sequence = result.sequence
+        url = self._start_url_entry.get().strip()
+        try_record_job_start(url, result.sequence)
         self._start_progress_bar.set(1.0)
         self._start_progress_label.configure(
             text=f"Saved {result.path.name} — you can continue on the Resume tab.",
             text_color=("#2FA572", "#2FA572"),
         )
         self._update_start_generate_state()
+        self.refresh_application_tracker()
 
     def _on_start_failure(self, exc: BaseException) -> None:
         self._start_busy = False
@@ -421,6 +624,162 @@ class ResumeGui(ctk.CTk):
         self._update_start_generate_state()
         messagebox.showerror("Save failed", message)
 
+    def _on_tab_changed(self) -> None:
+        if self.tabs.get() == APPLICATIONS_TAB_NAME:
+            self.refresh_application_tracker()
+
+    def _build_applications_tab(self, parent: ctk.CTkFrame) -> None:
+        parent.grid_columnconfigure(0, weight=1)
+        parent.grid_rowconfigure(2, weight=1)
+
+        summary = ctk.CTkFrame(parent, fg_color="transparent")
+        summary.grid(row=0, column=0, sticky="ew", padx=12, pady=(12, 8))
+        summary.grid_columnconfigure((0, 1, 2, 3), weight=1)
+
+        self._tracker_stat_labels: dict[str, ctk.CTkLabel] = {}
+        stat_specs = (
+            ("total", "Total applications: 0"),
+            ("companies", "Unique companies: 0"),
+            ("resume", "With resume: 0"),
+            ("cover", "With cover letter: 0"),
+        )
+        for column, (key, text) in enumerate(stat_specs):
+            label = ctk.CTkLabel(summary, text=text, anchor="w")
+            label.grid(row=0, column=column, sticky="w", padx=(0, 8))
+            self._tracker_stat_labels[key] = label
+
+        btn_row = ctk.CTkFrame(parent, fg_color="transparent")
+        btn_row.grid(row=1, column=0, sticky="ew", padx=12, pady=(0, 8))
+        ctk.CTkButton(
+            btn_row,
+            text="Refresh",
+            width=100,
+            command=self.refresh_application_tracker,
+        ).pack(side="left", padx=(0, 8))
+        ctk.CTkButton(
+            btn_row,
+            text="Open log folder",
+            width=120,
+            command=self._open_tracker_log_location,
+        ).pack(side="left", padx=(0, 8))
+        ctk.CTkButton(
+            btn_row,
+            text="Open Excel",
+            width=110,
+            command=self._open_tracker_excel,
+        ).pack(side="left")
+        ctk.CTkLabel(
+            btn_row,
+            text=str(tracker_path()),
+            text_color="gray",
+            anchor="w",
+        ).pack(side="left", fill="x", expand=True, padx=(12, 0))
+
+        table_frame = ctk.CTkFrame(parent)
+        table_frame.grid(row=2, column=0, sticky="nsew", padx=12, pady=(0, 12))
+        table_frame.grid_rowconfigure(0, weight=1)
+        table_frame.grid_columnconfigure(0, weight=1)
+
+        col_ids = [spec[0] for spec in _TRACKER_COLUMNS]
+        self._tracker_tree = ttk.Treeview(
+            table_frame,
+            columns=col_ids,
+            show="headings",
+            selectmode="browse",
+        )
+        for col_id, heading, width in _TRACKER_COLUMNS:
+            self._tracker_tree.heading(col_id, text=heading)
+            self._tracker_tree.column(col_id, width=width, minwidth=40, stretch=True)
+
+        tracker_vsb = ctk.CTkScrollbar(
+            table_frame, command=self._tracker_tree.yview
+        )
+        tracker_hsb = ctk.CTkScrollbar(
+            table_frame, orientation="horizontal", command=self._tracker_tree.xview
+        )
+        self._tracker_tree.configure(
+            yscrollcommand=tracker_vsb.set, xscrollcommand=tracker_hsb.set
+        )
+        self._tracker_tree.grid(row=0, column=0, sticky="nsew")
+        tracker_vsb.grid(row=0, column=1, sticky="ns")
+        tracker_hsb.grid(row=1, column=0, sticky="ew")
+
+    def refresh_application_tracker(self) -> None:
+        """Reload tracker stats and table from Excel (read-only)."""
+        if not hasattr(self, "_tracker_tree"):
+            return
+        try:
+            stats = application_stats()
+            records = load_application_log()
+        except OSError as exc:
+            messagebox.showerror(
+                "Applications", f"Could not read application log:\n{exc}"
+            )
+            return
+        except Exception as exc:
+            messagebox.showerror(
+                "Applications", f"Could not load application log:\n{exc}"
+            )
+            return
+
+        self._tracker_stat_labels["total"].configure(
+            text=f"Total applications: {stats['total_applications']}"
+        )
+        self._tracker_stat_labels["companies"].configure(
+            text=f"Unique companies: {stats['unique_companies']}"
+        )
+        self._tracker_stat_labels["resume"].configure(
+            text=f"With resume: {stats['with_resume']}"
+        )
+        self._tracker_stat_labels["cover"].configure(
+            text=f"With cover letter: {stats['with_cover_letter']}"
+        )
+
+        for item in self._tracker_tree.get_children():
+            self._tracker_tree.delete(item)
+
+        for record in sort_application_records(records):
+            self._tracker_tree.insert(
+                "",
+                "end",
+                values=(
+                    record.date,
+                    record.company,
+                    record.position,
+                    record.website,
+                    record.url,
+                    record.resume,
+                    record.cover_letter,
+                ),
+            )
+
+    def _open_tracker_log_location(self) -> None:
+        path = tracker_path()
+        target = path if path.is_file() else path.parent
+        if not target.exists():
+            messagebox.showinfo(
+                "Applications",
+                f"Log not found yet:\n{path}\n\nUse Start to create the first entry.",
+            )
+            return
+        try:
+            open_file_location(target)
+        except (FileNotFoundError, OSError) as exc:
+            messagebox.showerror("Applications", str(exc))
+
+    def _open_tracker_excel(self) -> None:
+        path = tracker_path()
+        if not path.is_file():
+            messagebox.showinfo(
+                "Applications",
+                f"Excel log not found:\n{path}\n\nUse Start to create the first entry.",
+            )
+            return
+        try:
+            open_with_default_app(path)
+        except (FileNotFoundError, OSError) as exc:
+            messagebox.showerror("Applications", f"Could not open Excel file:\n{exc}")
+
     def _ensure_tree_style(self) -> None:
         if self._tree_style_ready:
             return
@@ -431,6 +790,69 @@ class ResumeGui(ctk.CTk):
             rowheight=APPLICATIONS_PANEL_FONT_SIZE * 2,
         )
         self._tree_style_ready = True
+
+    def _add_collapsible_panel(
+        self,
+        parent: ctk.CTkFrame,
+        *,
+        doc_type: str,
+        section: str,
+        title: str,
+        start_row: int,
+        boxes: dict[str, ctk.CTkTextbox],
+    ) -> int:
+        """Add a collapsed-by-default dropdown section; return the next grid row."""
+        toggle_btn = ctk.CTkButton(
+            parent,
+            text=f"▶ {title}",
+            anchor="w",
+            fg_color="transparent",
+            text_color=("gray10", "gray90"),
+            hover_color=("gray80", "gray30"),
+            height=28,
+            command=lambda dt=doc_type, sec=section: self._toggle_collapsible_panel(
+                dt, sec
+            ),
+        )
+        toggle_btn.grid(row=start_row, column=0, sticky="ew", padx=8, pady=(6, 0))
+
+        body_frame = ctk.CTkFrame(parent, fg_color="transparent")
+        body_frame.grid(row=start_row + 1, column=0, sticky="ew", padx=8, pady=(0, 4))
+        body_frame.grid_columnconfigure(0, weight=1)
+
+        textbox = ctk.CTkTextbox(
+            body_frame,
+            height=COLLAPSIBLE_PANEL_HEIGHT,
+            wrap="word",
+            activate_scrollbars=True,
+        )
+        textbox.grid(row=0, column=0, sticky="nsew")
+        boxes[doc_type] = textbox
+
+        body_frame.grid_remove()
+        self._collapsible_panels[(doc_type, section)] = {
+            "title": title,
+            "toggle_btn": toggle_btn,
+            "body_frame": body_frame,
+            "expanded": False,
+        }
+        return start_row + 2
+
+    def _toggle_collapsible_panel(self, doc_type: str, section: str) -> None:
+        state = self._collapsible_panels[(doc_type, section)]
+        title = str(state["title"])
+        expanded = not bool(state["expanded"])
+        state["expanded"] = expanded
+        toggle_btn = state["toggle_btn"]
+        body_frame = state["body_frame"]
+        assert isinstance(toggle_btn, ctk.CTkButton)
+        assert isinstance(body_frame, ctk.CTkFrame)
+        arrow = "▼" if expanded else "▶"
+        toggle_btn.configure(text=f"{arrow} {title}")
+        if expanded:
+            body_frame.grid()
+        else:
+            body_frame.grid_remove()
 
     def _build_document_tab(self, parent: ctk.CTkFrame, doc_type: str) -> None:
         label = _DOC_TO_VIEW[doc_type]
@@ -470,8 +892,8 @@ class ResumeGui(ctk.CTk):
 
         body = ctk.CTkFrame(parent)
         body.grid(row=1, column=0, sticky="nsew", pady=6)
-        body.grid_columnconfigure(0, weight=3)
-        body.grid_columnconfigure(1, weight=2)
+        body.grid_columnconfigure(0, weight=0, minsize=APPLICATIONS_TREE_MINSIZE)
+        body.grid_columnconfigure(1, weight=1)
         body.grid_rowconfigure(0, weight=1)
 
         tree_panel = ctk.CTkFrame(body)
@@ -495,7 +917,7 @@ class ResumeGui(ctk.CTk):
         tree = ttk.Treeview(
             tree_container,
             show="tree",
-            selectmode="browse",
+            selectmode="extended",
             style="Applications.Treeview",
         )
         tree_scroll = ctk.CTkScrollbar(tree_container, command=tree.yview)
@@ -507,37 +929,42 @@ class ResumeGui(ctk.CTk):
 
         right = ctk.CTkFrame(body)
         right.grid(row=0, column=1, sticky="nsew", padx=(4, 8), pady=8)
-        right.grid_rowconfigure(3, weight=1)
-        right.grid_rowconfigure(6, weight=1)
         right.grid_columnconfigure(0, weight=1)
 
-        ctk.CTkLabel(
-            right, text="Result", anchor="w", font=ctk.CTkFont(weight="bold")
-        ).grid(row=0, column=0, sticky="w", padx=8, pady=(8, 4))
-
         progress_label = ctk.CTkLabel(right, text="", anchor="w", text_color="gray")
-        progress_label.grid(row=1, column=0, sticky="ew", padx=8, pady=(0, 2))
+        progress_label.grid(row=0, column=0, sticky="ew", padx=8, pady=(8, 2))
         self._progress_labels[doc_type] = progress_label
 
         progress_bar = ctk.CTkProgressBar(right, mode="determinate")
-        progress_bar.grid(row=2, column=0, sticky="ew", padx=8, pady=(0, 6))
+        progress_bar.grid(row=1, column=0, sticky="ew", padx=8, pady=(0, 6))
         progress_bar.set(0)
         self._progress_bars[doc_type] = progress_bar
 
-        status_box = ctk.CTkTextbox(right, wrap="word", activate_scrollbars=True)
-        status_box.grid(row=3, column=0, sticky="nsew", padx=8, pady=(0, 8))
-        self._status_boxes[doc_type] = status_box
-
-        ctk.CTkLabel(
+        panel_row = 2
+        panel_row = self._add_collapsible_panel(
             right,
-            text="Warnings & errors",
-            anchor="w",
-            font=ctk.CTkFont(weight="bold"),
-        ).grid(row=4, column=0, sticky="w", padx=8, pady=(0, 4))
-
-        warn_box = ctk.CTkTextbox(right, wrap="word", activate_scrollbars=True)
-        warn_box.grid(row=6, column=0, sticky="nsew", padx=8, pady=(0, 8))
-        self._warn_boxes[doc_type] = warn_box
+            doc_type=doc_type,
+            section="result",
+            title="Result",
+            start_row=panel_row,
+            boxes=self._status_boxes,
+        )
+        panel_row = self._add_collapsible_panel(
+            right,
+            doc_type=doc_type,
+            section="warnings",
+            title="Warnings & errors",
+            start_row=panel_row,
+            boxes=self._warn_boxes,
+        )
+        self._add_collapsible_panel(
+            right,
+            doc_type=doc_type,
+            section="trim",
+            title="Trim",
+            start_row=panel_row,
+            boxes=self._trim_boxes,
+        )
 
         bottom = ctk.CTkFrame(parent)
         bottom.grid(row=2, column=0, sticky="ew", pady=(6, 0))
@@ -557,6 +984,14 @@ class ResumeGui(ctk.CTk):
             width=80,
             command=lambda dt=doc_type: self.open_selected_file(dt),
         ).pack(side="left", padx=(0, 8), pady=8)
+        delete_btn = ctk.CTkButton(
+            bottom,
+            text="Delete",
+            width=80,
+            command=lambda dt=doc_type: self.delete_selected_file(dt),
+        )
+        delete_btn.pack(side="left", padx=(0, 8), pady=8)
+        self._delete_buttons[doc_type] = delete_btn
         if doc_type == DOC_RESUME:
             ctk.CTkButton(
                 bottom,
@@ -1229,6 +1664,8 @@ class ResumeGui(ctk.CTk):
         state = "disabled" if busy else "normal"
         for button in self._generate_buttons.values():
             button.configure(state=state)
+        for button in self._delete_buttons.values():
+            button.configure(state=state)
 
     def _clear_status_box(self, doc_type: str | None = None) -> None:
         box = self._status_boxes[doc_type or self._active_generation_type]
@@ -1247,6 +1684,21 @@ class ResumeGui(ctk.CTk):
         box.see("end")
         box.configure(state="disabled")
 
+    def _append_trim_text(self, text: str, doc_type: str | None = None) -> None:
+        if not text:
+            return
+        box = self._trim_boxes[doc_type or self._active_generation_type]
+        box.configure(state="normal")
+        box.insert("end", text)
+        if not text.endswith("\n"):
+            box.insert("end", "\n")
+        box.see("end")
+        box.configure(state="disabled")
+
+    def _is_trim_progress(self, event: PipelineProgress) -> bool:
+        message = event.message.strip()
+        return event.phase == PHASE_TRIM or message.startswith("Trim:")
+
     def _already_streamed(self, text: str) -> bool:
         needle = text.strip()
         if not needle:
@@ -1258,7 +1710,11 @@ class ResumeGui(ctk.CTk):
 
     def _handle_progress_event(self, event: PipelineProgress) -> None:
         doc_type = self._active_generation_type
-        self._append_status_text(event.message, doc_type)
+        trim_event = self._is_trim_progress(event)
+        if trim_event:
+            self._append_trim_text(event.message, doc_type)
+        else:
+            self._append_status_text(event.message, doc_type)
         self._streamed_messages.add(event.message)
         if event.phase in (PHASE_FAILED, CL_PHASE_FAILED):
             self._saw_failed_phase = True
@@ -1271,7 +1727,10 @@ class ResumeGui(ctk.CTk):
                 and detail not in event.message
                 and not self._already_streamed(detail)
             ):
-                self._append_status_text(detail, doc_type)
+                if trim_event:
+                    self._append_trim_text(detail, doc_type)
+                else:
+                    self._append_status_text(detail, doc_type)
                 self._streamed_messages.add(detail)
 
         total = max(event.total_steps, 1)
@@ -1390,6 +1849,88 @@ class ResumeGui(ctk.CTk):
         except OSError as exc:
             messagebox.showerror("Open file", f"Could not open file:\n{exc}")
 
+    def delete_selected_file(self, doc_type: str) -> None:
+        """Delete selected application files and/or position folders."""
+        if self._busy:
+            return
+
+        tree = self._trees[doc_type]
+        targets, skip_info = resolve_tree_selection(tree)
+        if not targets:
+            messagebox.showinfo("Delete", skip_info or "Nothing to delete.")
+            return
+
+        if not messagebox.askyesno("Delete", delete_plan_confirm_message(targets)):
+            return
+
+        status_lines: list[str] = []
+        errors: list[str] = []
+        company_dirs_to_clean: set[Path] = set()
+
+        folder_targets = [
+            path for role, path in targets if role == TREE_ROLE_POSITION
+        ]
+        file_targets = [path for role, path in targets if role == TREE_ROLE_FILE]
+
+        for folder in folder_targets:
+            company_dirs_to_clean.add(folder.parent.resolve())
+
+        for folder in folder_targets:
+            try:
+                result = delete_position_folder(folder)
+            except FileNotFoundError:
+                status_lines.append(f"Folder already removed: {folder.name}")
+                continue
+            except ValueError as exc:
+                errors.append(str(exc))
+                continue
+
+            if result.errors:
+                errors.extend(result.errors)
+            if result.deleted:
+                status_lines.append(
+                    f"Deleted position folder: {folder.parent.name} / {folder.name}"
+                )
+            else:
+                status_lines.append(f"Folder already empty: {folder.name}")
+
+        for file_path in file_targets:
+            try:
+                result = delete_application_file(
+                    file_path,
+                    include_paired_pdf_docx=DELETE_INCLUDE_PAIRED_PDF_DOCX,
+                )
+            except FileNotFoundError:
+                status_lines.append(f"Already deleted: {file_path.name}")
+                company_dirs_to_clean.add(file_path.parent.parent.resolve())
+                continue
+            except ValueError as exc:
+                errors.append(str(exc))
+                continue
+
+            if result.errors:
+                errors.extend(result.errors)
+            for deleted_path in result.deleted:
+                status_lines.append(f"Deleted: {deleted_path}")
+                company_dirs_to_clean.add(deleted_path.parent.parent.resolve())
+
+        for company_dir in company_dirs_to_clean:
+            try_remove_empty_company_dir(company_dir)
+
+        self.refresh_tree()
+
+        if errors:
+            messagebox.showerror("Delete", "\n".join(errors))
+
+        if status_lines:
+            for line in status_lines:
+                self._append_status_text(line, doc_type)
+        elif not errors:
+            messagebox.showinfo("Delete", "Nothing was deleted.")
+
+        if skip_info and status_lines:
+            self._append_status_text(skip_info, doc_type)
+
     def generate_document(self, doc_type: str) -> None:
         if self._busy:
             return
@@ -1411,6 +1952,7 @@ class ResumeGui(ctk.CTk):
         self._clear_status_box(doc_type)
         self._append_status_text("Starting generation…", doc_type)
         self._set_textbox(self._warn_boxes[doc_type], "")
+        self._set_textbox(self._trim_boxes[doc_type], "")
         self._progress_bars[doc_type].set(0)
         self._progress_labels[doc_type].configure(
             text=f"Starting {label.lower()} generation…"
@@ -1430,10 +1972,18 @@ class ResumeGui(ctk.CTk):
 
         try:
             if doc_type == DOC_RESUME:
-                result = run_pipeline(json_path, on_progress=on_progress)
+                result = run_pipeline(
+                    json_path,
+                    on_progress=on_progress,
+                    job_sequence=self._last_job_sequence,
+                )
                 self.after(0, lambda r=result: self._on_success(r, DOC_RESUME))
             else:
-                result = run_cover_letter_pipeline(json_path, on_progress=on_progress)
+                result = run_cover_letter_pipeline(
+                    json_path,
+                    on_progress=on_progress,
+                    job_sequence=self._last_job_sequence,
+                )
                 self.after(0, lambda r=result: self._on_success(r, DOC_COVER_LETTER))
         except (FileNotFoundError, ValueError, json.JSONDecodeError, RuntimeError) as exc:
             self.after(0, lambda e=exc, dt=doc_type: self._on_failure(e, dt))
@@ -1475,7 +2025,7 @@ class ResumeGui(ctk.CTk):
                 self._append_status_text(line, doc_type)
 
         doc_label = label.lower()
-        page_lines, page_warnings = format_page_lines(
+        page_lines, page_warnings, trim_lines = format_page_lines(
             result, document_label=doc_label
         )
         for line in page_lines:
@@ -1487,6 +2037,9 @@ class ResumeGui(ctk.CTk):
 
         warn_lines = list(page_warnings) or ["(no warnings)"]
         self._set_textbox(self._warn_boxes[doc_type], "\n".join(warn_lines))
+
+        trim_text = "\n".join(trim_lines) if trim_lines else "(nothing trimmed)"
+        self._set_textbox(self._trim_boxes[doc_type], trim_text)
 
         self.refresh_tree(highlight=result.position_dir)
 
@@ -1503,6 +2056,8 @@ class ResumeGui(ctk.CTk):
                 f"(limit {result.max_pages}).\n\n"
                 "Files were still created. See Warnings for details.",
             )
+
+        self.refresh_application_tracker()
 
     def _on_failure(self, exc: BaseException, doc_type: str) -> None:
         self._drain_progress_queue()

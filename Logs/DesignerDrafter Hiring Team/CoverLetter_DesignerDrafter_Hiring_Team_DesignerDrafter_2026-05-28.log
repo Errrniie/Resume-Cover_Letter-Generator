@@ -1,0 +1,8 @@
+2026-05-28 00:36:07 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\DesignerDrafter Hiring Team\CoverLetter_DesignerDrafter_Hiring_Team_DesignerDrafter_2026-05-28.log (document_type=cover_letter)
+2026-05-28 00:36:07 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Downloads\designer_drafter_cover_letter.json
+2026-05-28 00:36:07 INFO [resume.cover_letter] Cover letter validation passed
+2026-05-28 00:36:07 INFO [resume.cover_letter] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\DesignerDrafter Hiring Team\DesignerDrafter
+2026-05-28 00:36:07 INFO [resume.cover_letter] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\DesignerDrafter Hiring Team\DesignerDrafter\Ernesto_Carlton_Cover_Letter_DesignerDrafter_Hiring_Team_DesignerDrafter.docx
+2026-05-28 00:36:12 INFO [resume.cover_letter] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\DesignerDrafter Hiring Team\DesignerDrafter\Ernesto_Carlton_Cover_Letter_DesignerDrafter_Hiring_Team_DesignerDrafter.pdf
+2026-05-28 00:36:12 INFO [resume.cover_letter] Page check (OK): 1 page(s) (limit 1)
+2026-05-28 00:36:12 INFO [resume.cover_letter] Cover letter run finished (over_page_limit=False, page_check_skipped=False)

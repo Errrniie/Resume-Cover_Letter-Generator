@@ -1,0 +1,8 @@
+2026-05-28 01:10:40 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Molex\CoverLetter_Molex_Apparatus_Mechanical_Designer_2026-05-28.log (document_type=cover_letter)
+2026-05-28 01:10:40 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Downloads\molex_cover_letter.json
+2026-05-28 01:10:40 INFO [resume.cover_letter] Cover letter validation passed
+2026-05-28 01:10:40 INFO [resume.cover_letter] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Molex\Apparatus Mechanical Designer
+2026-05-28 01:10:40 INFO [resume.cover_letter] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Molex\Apparatus Mechanical Designer\Ernesto_Carlton_Cover_Letter_Molex_Apparatus_Mechanical_Designer.docx
+2026-05-28 01:10:44 INFO [resume.cover_letter] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Molex\Apparatus Mechanical Designer\Ernesto_Carlton_Cover_Letter_Molex_Apparatus_Mechanical_Designer.pdf
+2026-05-28 01:10:44 INFO [resume.cover_letter] Page check (OK): 1 page(s) (limit 1)
+2026-05-28 01:10:44 INFO [resume.cover_letter] Cover letter run finished (over_page_limit=False, page_check_skipped=False)

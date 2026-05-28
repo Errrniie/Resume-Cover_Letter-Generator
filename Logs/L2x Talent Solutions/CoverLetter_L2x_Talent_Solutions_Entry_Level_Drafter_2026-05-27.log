@@ -1,0 +1,8 @@
+2026-05-27 23:27:55 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\L2x Talent Solutions\CoverLetter_L2x_Talent_Solutions_Entry_Level_Drafter_2026-05-27.log (document_type=cover_letter)
+2026-05-27 23:27:55 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Downloads\l2x_talent_solutions_cover_letter.json
+2026-05-27 23:27:55 INFO [resume.cover_letter] Cover letter validation passed
+2026-05-27 23:27:55 INFO [resume.cover_letter] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\L2x Talent Solutions\Entry Level Drafter
+2026-05-27 23:27:55 INFO [resume.cover_letter] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\L2x Talent Solutions\Entry Level Drafter\Ernesto_Carlton_Cover_Letter_L2x_Talent_Solutions_Entry_Level_Drafter.docx
+2026-05-27 23:27:58 INFO [resume.cover_letter] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\L2x Talent Solutions\Entry Level Drafter\Ernesto_Carlton_Cover_Letter_L2x_Talent_Solutions_Entry_Level_Drafter.pdf
+2026-05-27 23:27:58 INFO [resume.cover_letter] Page check (OK): 1 page(s) (limit 1)
+2026-05-27 23:27:58 INFO [resume.cover_letter] Cover letter run finished (over_page_limit=False, page_check_skipped=False)

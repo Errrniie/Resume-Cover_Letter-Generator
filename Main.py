@@ -20,6 +20,10 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from Modules.Application_Path import resolve_application_path_from_data
+from Modules.Application_Tracker import (
+    try_record_cover_letter_generated,
+    try_record_resume_generated,
+)
 from Modules.Resume_Md import save_temporary_resume_md
 from Modules.Fill_Cover_Letter import fill_cover_letter, parse_cover_letter_data
 from Modules.Fill_Resume import fill_resume, parse_resume_data
@@ -373,6 +377,7 @@ def run_pipeline(
     config: Config | None = None,
     settings_path: Path | None = None,
     on_progress: Callable[[PipelineProgress], None] | None = None,
+    job_sequence: int | None = None,
 ) -> PipelineResult:
     """
     Run the full resume pipeline.
@@ -536,6 +541,12 @@ def run_pipeline(
             total_steps=total_steps,
         )
 
+        try_record_resume_generated(
+            str(raw.get("company", "")),
+            str(raw.get("position", "")),
+            job_sequence=job_sequence,
+        )
+
         return PipelineResult(
             position_dir=position_dir,
             docx_path=docx_path,
@@ -569,6 +580,7 @@ def run_cover_letter_pipeline(
     config: Config | None = None,
     settings_path: Path | None = None,
     on_progress: Callable[[PipelineProgress], None] | None = None,
+    job_sequence: int | None = None,
 ) -> CoverLetterPipelineResult:
     """
     Run the cover letter pipeline (fill, PDF, page check; no trim).
@@ -700,6 +712,12 @@ def run_cover_letter_pipeline(
             message="Cover letter run finished successfully.",
             step=cover_letter_completed_step(),
             total_steps=total_steps,
+        )
+
+        try_record_cover_letter_generated(
+            str(raw.get("company", "")),
+            str(raw.get("position", "")),
+            job_sequence=job_sequence,
         )
 
         return CoverLetterPipelineResult(
