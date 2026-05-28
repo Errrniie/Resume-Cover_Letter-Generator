@@ -1,0 +1,27 @@
+2026-05-21 16:29:40 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Gamma Technologies\Resume_Gamma_Technologies_INTERN_Mechanical_Applications_2026-05-21.log (document_type=resume)
+2026-05-21 16:29:40 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\gamma_technologies_resume.json
+2026-05-21 16:29:40 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 16:29:40 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 16:29:40 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Gamma Technologies\INTERN Mechanical Applications
+2026-05-21 16:29:40 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Gamma Technologies\INTERN Mechanical Applications\Ernesto_Carlton_Resume_Gamma_Technologies_INTERN_Mechanical_Applications.docx
+2026-05-21 16:29:43 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Gamma Technologies\INTERN Mechanical Applications\Ernesto_Carlton_Resume_Gamma_Technologies_INTERN_Mechanical_Applications.pdf
+2026-05-21 16:29:43 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 16:29:43 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 16:47:34 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Gamma Technologies\Resume_Gamma_Technologies_INTERN_Mechanical_Applications_2026-05-21.log (document_type=resume)
+2026-05-21 16:47:34 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\gamma_technologies_mechanical_applications_resume.json
+2026-05-21 16:47:34 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 16:47:34 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 16:47:34 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Gamma Technologies\INTERN Mechanical Applications
+2026-05-21 16:47:34 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Gamma Technologies\INTERN Mechanical Applications\Ernesto_Carlton_Resume_Gamma_Technologies_INTERN_Mechanical_Applications_2.docx
+2026-05-21 16:47:39 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Gamma Technologies\INTERN Mechanical Applications\Ernesto_Carlton_Resume_Gamma_Technologies_INTERN_Mechanical_Applications_2.pdf
+2026-05-21 16:47:39 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 16:47:39 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 17:33:59 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Gamma Technologies\Resume_Gamma_Technologies_INTERN_Mechanical_Applications_2026-05-21.log (document_type=resume)
+2026-05-21 17:33:59 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\gamma_technologies_mechanical_applications_v2.json
+2026-05-21 17:33:59 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 17:33:59 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 17:33:59 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Gamma Technologies\INTERN Mechanical Applications
+2026-05-21 17:33:59 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Gamma Technologies\INTERN Mechanical Applications\Ernesto_Carlton_Resume_Gamma_Technologies_INTERN_Mechanical_Applications_3.docx
+2026-05-21 17:34:00 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Gamma Technologies\INTERN Mechanical Applications\Ernesto_Carlton_Resume_Gamma_Technologies_INTERN_Mechanical_Applications_3.pdf
+2026-05-21 17:34:00 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 17:34:00 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

@@ -1,0 +1,16 @@
+2026-05-27 21:13:47 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\ITW\Resume_ITW_Manufacturing_Engineer_Intern_2026-05-27.log (document_type=resume)
+2026-05-27 21:13:47 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\resume.json
+2026-05-27 21:13:47 INFO [resume.pipeline] Metadata validation passed
+2026-05-27 21:13:47 INFO [resume.pipeline] Bullet validation passed
+2026-05-27 21:13:47 INFO [resume.pipeline] Resume snapshot MD: C:\Users\EMCar\Desktop\Resume Script\Resume_MD\resume_004.md
+2026-05-27 21:13:47 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern
+2026-05-27 21:13:47 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Resume_ITW_Manufacturing_Engineer_Intern_5.docx
+2026-05-27 21:13:51 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Resume_ITW_Manufacturing_Engineer_Intern_5.pdf
+2026-05-27 21:13:52 WARNING [resume.pipeline] WARNING pages: 2 pages in Ernesto_Carlton_Resume_ITW_Manufacturing_Engineer_Intern_5.pdf (limit 1 for resume)
+2026-05-27 21:13:52 INFO [resume.pipeline] Page check (OVER LIMIT): 2 page(s) (limit 1)
+2026-05-27 21:13:52 INFO [resume.pipeline] Trim: removed bullet from greenway: Performed near-daily equipment maintenance, 2-stroke engine repair, and mechanical diagnostics to improve reliability and limit field downtime.
+2026-05-27 21:13:56 INFO [resume.pipeline] Trim: removed bullet from windturbine: Performed 6 turbine inspections with professional engineering personnel, identifying reliability considerations and translating field observations into structured documentation.
+2026-05-27 21:14:01 INFO [resume.pipeline] Trim: removed bullet from peizo: Collaborated on 16-slot actuator architecture development, using CAD-informed geometry review and simulation data to support repeatable fabrication and experimental assembly.
+2026-05-27 21:14:03 INFO [resume.pipeline] Trim: removed bullet from mostardi: Coordinated setup procedures averaging 4 hours with plant engineers and EPA observers while preserving sample integrity and compliance documentation.
+2026-05-27 21:14:07 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-27 21:14:07 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

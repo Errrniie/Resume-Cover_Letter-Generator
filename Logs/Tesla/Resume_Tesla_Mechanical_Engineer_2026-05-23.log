@@ -1,0 +1,21 @@
+2026-05-23 18:54:41 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Tesla\Resume_Tesla_Mechanical_Engineer_2026-05-23.log (document_type=resume)
+2026-05-23 18:54:41 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Desktop\Resume Script\sample_data.json
+2026-05-23 18:54:41 INFO [resume.pipeline] Metadata validation passed
+2026-05-23 18:54:41 INFO [resume.pipeline] Bullet validation passed
+2026-05-23 18:54:41 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer
+2026-05-23 18:54:42 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Resume_Tesla_Mechanical_Engineer_6.docx
+2026-05-23 18:54:42 ERROR [resume.pipeline] Run failed
+Traceback (most recent call last):
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 489, in run_pipeline
+    pdf_path = convert_docx_to_pdf(docx_path, pdf_path_for_docx(docx_path))
+  File "C:\Users\EMCar\Desktop\Resume Script\Modules\Pdf_Engine.py", line 67, in convert_docx_to_pdf
+    convert(str(docx_path), str(out_pdf))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\docx2pdf\__init__.py", line 106, in convert
+    return windows(paths, keep_active)
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\docx2pdf\__init__.py", line 33, in windows
+    doc.SaveAs(str(pdf_filepath), FileFormat=wdFormatPDF)
+    ^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\win32com\client\dynamic.py", line 631, in __getattr__
+    raise AttributeError(f"{self._username_}.{attr}")
+AttributeError: Open.SaveAs

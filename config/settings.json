@@ -1,0 +1,54 @@
+{
+  "templates": {
+    "cover_letter": {
+      "enabled": true,
+      "path": "config/templates/Cover_Letter_Template.docx"
+    },
+    "resume": {
+      "enabled": true,
+      "path": "config/templates/Resume_Template.docx"
+    }
+  },
+  "bullets": {
+    "default_max_characters": 210,
+    "default_max_count": 6,
+    "groups": {}
+  },
+  "pages": {
+    "default_max_pages": 1,
+    "cover_letter": {
+      "max_pages": 1,
+      "check_enabled": true
+    },
+    "resume": {
+      "max_pages": 1,
+      "check_enabled": true
+    }
+  },
+  "trim": {
+    "enabled": true,
+    "max_attempts": 10,
+    "order": [
+      {
+        "section": "greenway",
+        "remove": "bullets"
+      },
+      {
+        "section": "windturbine",
+        "remove": "bullets"
+      },
+      {
+        "section": "peizo",
+        "remove": "bullets"
+      },
+      {
+        "section": "mostardi",
+        "remove": "bullets"
+      },
+      {
+        "section": "goose",
+        "remove": "bullets"
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+2026-05-23 23:13:25 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\TRUMPF\CoverLetter_TRUMPF__unknown_2026-05-23.log (document_type=cover_letter)
+2026-05-23 23:13:25 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Downloads\cover_letter (1).json
+2026-05-23 23:13:25 ERROR [resume.cover_letter] Cover letter validation failed: ERROR position: required but missing
+2026-05-23 23:13:25 ERROR [resume.cover_letter] Cover letter run failed
+Traceback (most recent call last):
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 614, in run_cover_letter_pipeline
+    _raise_cover_letter_validation_error(validation)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 224, in _raise_cover_letter_validation_error
+    raise ValueError(f"Cover letter validation failed:\n{detail}")
+ValueError: Cover letter validation failed:
+  - ERROR position: required but missing

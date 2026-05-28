@@ -1,0 +1,38 @@
+2026-05-21 15:41:44 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Tesla\Resume_Tesla_Mechanical_Engineer_2026-05-21.log (document_type=resume)
+2026-05-21 15:41:44 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Desktop\Resume Script\sample_data.json
+2026-05-21 15:41:44 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 15:41:44 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 15:41:44 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer
+2026-05-21 15:41:44 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Resume_Tesla_Mechanical_Engineer_2.docx
+2026-05-21 15:41:45 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Resume_Tesla_Mechanical_Engineer_2.pdf
+2026-05-21 15:41:45 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 15:41:45 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 16:01:50 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Tesla\Resume_Tesla_Mechanical_Engineer_2026-05-21.log (document_type=resume)
+2026-05-21 16:01:50 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Desktop\Resume Script\sample_data.json
+2026-05-21 16:01:50 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 16:01:50 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 16:01:50 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer
+2026-05-21 16:01:50 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Resume_Tesla_Mechanical_Engineer_3.docx
+2026-05-21 16:01:59 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Resume_Tesla_Mechanical_Engineer_3.pdf
+2026-05-21 16:01:59 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 16:01:59 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 22:06:29 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Tesla\Resume_Tesla_Mechanical_Engineer_2026-05-21.log (document_type=resume)
+2026-05-21 22:06:29 INFO [resume.pipeline] Run started; input=sample_data.json
+2026-05-21 22:06:29 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 22:06:29 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 22:06:29 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer
+2026-05-21 22:06:30 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Resume_Tesla_Mechanical_Engineer_4.docx
+2026-05-21 22:06:34 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Resume_Tesla_Mechanical_Engineer_4.pdf
+2026-05-21 22:06:34 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 22:06:34 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 22:06:34 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 22:06:40 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Tesla\Resume_Tesla_Mechanical_Engineer_2026-05-21.log (document_type=resume)
+2026-05-21 22:06:40 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Desktop\Resume Script\sample_data.json
+2026-05-21 22:06:40 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 22:06:40 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 22:06:40 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer
+2026-05-21 22:06:40 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Resume_Tesla_Mechanical_Engineer_5.docx
+2026-05-21 22:06:46 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Resume_Tesla_Mechanical_Engineer_5.pdf
+2026-05-21 22:06:46 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 22:06:46 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 22:06:46 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

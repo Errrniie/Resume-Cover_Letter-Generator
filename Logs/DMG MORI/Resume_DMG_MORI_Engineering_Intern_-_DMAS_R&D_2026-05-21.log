@@ -1,0 +1,9 @@
+2026-05-21 17:03:09 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\DMG MORI\Resume_DMG_MORI_Engineering_Intern_-_DMAS_R&D_2026-05-21.log (document_type=resume)
+2026-05-21 17:03:09 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\dmg_mori_dmas_rd_resume.json
+2026-05-21 17:03:09 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 17:03:09 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 17:03:09 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\DMG MORI\Engineering Intern - DMAS R&D
+2026-05-21 17:03:09 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\DMG MORI\Engineering Intern - DMAS R&D\Ernesto_Carlton_Resume_DMG_MORI_Engineering_Intern_-_DMAS_R&D.docx
+2026-05-21 17:03:14 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\DMG MORI\Engineering Intern - DMAS R&D\Ernesto_Carlton_Resume_DMG_MORI_Engineering_Intern_-_DMAS_R&D.pdf
+2026-05-21 17:03:14 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 17:03:14 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

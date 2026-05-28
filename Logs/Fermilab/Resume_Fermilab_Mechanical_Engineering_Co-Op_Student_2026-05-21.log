@@ -1,0 +1,37 @@
+2026-05-21 17:58:21 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Fermilab\Resume_Fermilab_Mechanical_Engineering_Co-Op_Student_2026-05-21.log (document_type=resume)
+2026-05-21 17:58:21 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\fermilab_mechanical_engineering_coop.json
+2026-05-21 17:58:21 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 17:58:21 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 17:58:21 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Fermilab\Mechanical Engineering Co-Op Student
+2026-05-21 17:58:22 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Fermilab\Mechanical Engineering Co-Op Student\Ernesto_Carlton_Resume_Fermilab_Mechanical_Engineering_Co-Op_Student.docx
+2026-05-21 17:58:27 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Fermilab\Mechanical Engineering Co-Op Student\Ernesto_Carlton_Resume_Fermilab_Mechanical_Engineering_Co-Op_Student.pdf
+2026-05-21 17:58:27 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 17:58:27 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 22:03:41 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Fermilab\Resume_Fermilab_Mechanical_Engineering_Co-Op_Student_2026-05-21.log (document_type=resume)
+2026-05-21 22:03:41 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\fermilab_mechanical_engineering_coop_student.json
+2026-05-21 22:03:41 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 22:03:41 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 22:03:41 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Fermilab\Mechanical Engineering Co-Op Student
+2026-05-21 22:03:41 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Fermilab\Mechanical Engineering Co-Op Student\Ernesto_Carlton_Resume_Fermilab_Mechanical_Engineering_Co-Op_Student_2.docx
+2026-05-21 22:03:46 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Fermilab\Mechanical Engineering Co-Op Student\Ernesto_Carlton_Resume_Fermilab_Mechanical_Engineering_Co-Op_Student_2.pdf
+2026-05-21 22:03:47 INFO [resume.pipeline] Trim: removed bullet from greenway: Coordinated a 3-person field operation with job scheduling, equipment logistics, and near-daily maintenance checks to maintain service reliability.
+2026-05-21 22:03:50 INFO [resume.pipeline] Trim: removed bullet from windturbine: Documented technical drawings and system procedures in collaboration with IMEG personnel, translating field observations into practical equipment reference material.
+2026-05-21 22:03:56 INFO [resume.pipeline] Trim: removed bullet from peizo: Collaborated on 16-slot actuator architecture assessment for boundary layer manipulation, emphasizing modular design, flow-control hardware integration, and test readiness.
+2026-05-21 22:03:58 INFO [resume.pipeline] Trim: removed bullet from mostardi: Coordinated field setup with plant engineers and EPA observers, supporting 4-hour setup procedures and reliable sample collection on near-weekly deployments.
+2026-05-21 22:04:01 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 22:04:01 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 22:20:31 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Fermilab\Resume_Fermilab_Mechanical_Engineering_Co-Op_Student_2026-05-21.log (document_type=resume)
+2026-05-21 22:20:31 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\fermilab_mechanical_engineering_coop_student.json
+2026-05-21 22:20:31 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 22:20:31 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 22:20:31 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Fermilab\Mechanical Engineering Co-Op Student
+2026-05-21 22:20:31 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Fermilab\Mechanical Engineering Co-Op Student\Ernesto_Carlton_Resume_Fermilab_Mechanical_Engineering_Co-Op_Student_3.docx
+2026-05-21 22:20:35 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Fermilab\Mechanical Engineering Co-Op Student\Ernesto_Carlton_Resume_Fermilab_Mechanical_Engineering_Co-Op_Student_3.pdf
+2026-05-21 22:20:36 WARNING [resume.pipeline] WARNING pages: 2 pages in Ernesto_Carlton_Resume_Fermilab_Mechanical_Engineering_Co-Op_Student_3.pdf (limit 1 for resume)
+2026-05-21 22:20:36 INFO [resume.pipeline] Page check (OVER LIMIT): 2 page(s) (limit 1)
+2026-05-21 22:20:36 INFO [resume.pipeline] Trim: removed bullet from greenway: Coordinated a 3-person field operation with job scheduling, equipment logistics, and near-daily maintenance checks to maintain service reliability.
+2026-05-21 22:20:39 INFO [resume.pipeline] Trim: removed bullet from windturbine: Documented technical drawings and system procedures in collaboration with IMEG personnel, translating field observations into practical equipment reference material.
+2026-05-21 22:20:43 INFO [resume.pipeline] Trim: removed bullet from peizo: Collaborated on 16-slot actuator architecture assessment for boundary layer manipulation, emphasizing modular design, flow-control hardware integration, and test readiness.
+2026-05-21 22:20:48 INFO [resume.pipeline] Trim: removed bullet from mostardi: Coordinated field setup with plant engineers and EPA observers, supporting 4-hour setup procedures and reliable sample collection on near-weekly deployments.
+2026-05-21 22:20:53 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 22:20:53 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

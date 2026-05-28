@@ -1,0 +1,13 @@
+2026-05-21 21:09:06 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Snap-on\Resume_Snap-on_Engineering_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 21:09:06 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\snap_on_engineering_intern_resume.json
+2026-05-21 21:09:06 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 21:09:06 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 21:09:06 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Intern
+2026-05-21 21:09:06 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Intern\Ernesto_Carlton_Resume_Snap-on_Engineering_Intern.docx
+2026-05-21 21:09:08 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Intern\Ernesto_Carlton_Resume_Snap-on_Engineering_Intern.pdf
+2026-05-21 21:09:08 INFO [resume.pipeline] Trim: removed bullet from greenway: Performed mechanical troubleshooting on mowers and 2-stroke equipment, handling repairs, preventive maintenance, and field diagnostics.
+2026-05-21 21:09:14 INFO [resume.pipeline] Trim: removed bullet from windturbine: Evaluated machine parameters, power distribution, control hardware, and failure modes while coordinating with IMEG engineers to improve system understanding and maintenance readiness.
+2026-05-21 21:09:19 INFO [resume.pipeline] Trim: removed bullet from peizo: Supported design validation for zero-net-mass-flux actuator architectures by connecting aerodynamic performance goals with mechanical packaging, electrical actuation, and test setup needs.
+2026-05-21 21:09:21 INFO [resume.pipeline] Trim: removed bullet from mostardi: Coordinated with plant engineers and EPA observers to support compliant testing, sample handling, data integrity, and safe hazardous-material procedures.
+2026-05-21 21:09:25 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 21:09:25 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

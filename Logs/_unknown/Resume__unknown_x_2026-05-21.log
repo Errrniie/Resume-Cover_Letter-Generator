@@ -1,0 +1,12 @@
+2026-05-21 15:41:39 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\_unknown\Resume__unknown_x_2026-05-21.log (document_type=resume)
+2026-05-21 15:41:39 INFO [resume.pipeline] Run started; input=dict input
+2026-05-21 15:41:39 ERROR [resume.pipeline] Metadata validation failed: ERROR company: required but missing
+2026-05-21 15:41:39 ERROR [resume.pipeline] Run failed
+Traceback (most recent call last):
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 204, in run_pipeline
+    _raise_validation_error(meta)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 104, in _raise_validation_error
+    raise ValueError(f"JSON validation failed:\n{detail}")
+ValueError: JSON validation failed:
+  - ERROR company: required but missing

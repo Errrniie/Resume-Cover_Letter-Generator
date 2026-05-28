@@ -1,0 +1,17 @@
+2026-05-27 21:31:27 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\ITW\CoverLetter_ITW_Manufacturing_Engineer_Intern_2026-05-27.log (document_type=cover_letter)
+2026-05-27 21:31:27 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Downloads\cover_letter.json
+2026-05-27 21:31:27 INFO [resume.cover_letter] Cover letter validation passed
+2026-05-27 21:31:27 INFO [resume.cover_letter] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern
+2026-05-27 21:31:27 INFO [resume.cover_letter] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Cover_Letter_ITW_Manufacturing_Engineer_Intern.docx
+2026-05-27 21:31:33 INFO [resume.cover_letter] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Cover_Letter_ITW_Manufacturing_Engineer_Intern.pdf
+2026-05-27 21:31:33 WARNING [resume.cover_letter] WARNING pages: 2 pages in Ernesto_Carlton_Cover_Letter_ITW_Manufacturing_Engineer_Intern.pdf (limit 1 for cover_letter)
+2026-05-27 21:31:33 INFO [resume.cover_letter] Page check (OVER LIMIT): 2 page(s) (limit 1)
+2026-05-27 21:31:33 INFO [resume.cover_letter] Cover letter run finished (over_page_limit=True, page_check_skipped=False)
+2026-05-27 22:01:05 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\ITW\CoverLetter_ITW_Manufacturing_Engineer_Intern_2026-05-27.log (document_type=cover_letter)
+2026-05-27 22:01:05 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Downloads\cover_letter (1).json
+2026-05-27 22:01:05 INFO [resume.cover_letter] Cover letter validation passed
+2026-05-27 22:01:05 INFO [resume.cover_letter] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern
+2026-05-27 22:01:05 INFO [resume.cover_letter] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Cover_Letter_ITW_Manufacturing_Engineer_Intern_2.docx
+2026-05-27 22:01:10 INFO [resume.cover_letter] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Cover_Letter_ITW_Manufacturing_Engineer_Intern_2.pdf
+2026-05-27 22:01:10 INFO [resume.cover_letter] Page check (OK): 1 page(s) (limit 1)
+2026-05-27 22:01:10 INFO [resume.cover_letter] Cover letter run finished (over_page_limit=False, page_check_skipped=False)

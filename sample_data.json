@@ -1,0 +1,39 @@
+{
+  "company": "Tesla",
+  "position": "Mechanical Engineer",
+  "goose_bullets": [
+    "Led cross-functional team to design and prototype acoustic deterrent system.",
+    "Managed project timeline, parts sourcing, and weekly design reviews."
+  ],
+  "peizo_bullets": [
+    "Characterized piezo actuator response under varying load conditions.",
+    "Built MATLAB scripts to process sensor data and plot frequency response.",
+    "Collaborated on PCB layout and firmware integration for control board."
+  ],
+  "windturbine_bullets": [
+    "Assessed turbine electrical subsystem and identified refurbishment scope.",
+    "Supported wiring diagrams and safety checklist for lab re-commissioning."
+  ],
+  "mostardi_bullets": [
+    "Prepared air emissions reports and compliance documentation.",
+    "Performed stack testing data review and QA for client deliverables.",
+    "Supported field engineers with calculations and regulatory research."
+  ],
+  "greenway_bullets": [
+    "Supervised daily crew operations and equipment maintenance schedules."
+  ],
+  "skills": [
+    {
+      "category": "CAD/Simulation",
+      "skills": ["SolidWorks", "ANSYS", "CATIA", "Fusion 360", "MATLAB Simulink", "LabVIEW"]
+    },
+    {
+      "category": "Programming",
+      "skills": ["Python", "C++", "MATLAB", "Java", "SQL", "VBA"]
+    },
+    {
+      "category": "Embedded/Systems",
+      "skills": ["Arduino", "Raspberry Pi", "STM32", "I2C/SPI", "RTOS basics", "PCB design"]
+    }
+  ]
+}

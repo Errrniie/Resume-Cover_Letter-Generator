@@ -1,0 +1,8 @@
+# Generated application outputs (resumes, cover letters, PDFs)
+Applications/
+
+# Ephemeral job descriptions (latest paste only; see Modules/Job_Md.py)
+Job_MD/
+
+# Ephemeral resume JSON snapshots for GPT (latest generate only; see Modules/Resume_Md.py)
+Resume_MD/

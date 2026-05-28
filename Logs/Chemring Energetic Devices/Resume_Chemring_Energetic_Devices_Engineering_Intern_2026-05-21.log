@@ -1,0 +1,9 @@
+2026-05-21 18:16:26 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Chemring Energetic Devices\Resume_Chemring_Energetic_Devices_Engineering_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 18:16:26 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\chemring_energetic_devices_engineering_intern.json
+2026-05-21 18:16:26 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 18:16:26 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 18:16:26 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Chemring Energetic Devices\Engineering Intern
+2026-05-21 18:16:26 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Chemring Energetic Devices\Engineering Intern\Ernesto_Carlton_Resume_Chemring_Energetic_Devices_Engineering_Intern.docx
+2026-05-21 18:16:27 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Chemring Energetic Devices\Engineering Intern\Ernesto_Carlton_Resume_Chemring_Energetic_Devices_Engineering_Intern.pdf
+2026-05-21 18:16:27 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 18:16:27 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

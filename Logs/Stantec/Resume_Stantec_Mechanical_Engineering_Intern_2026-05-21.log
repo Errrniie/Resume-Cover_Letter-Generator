@@ -1,0 +1,30 @@
+2026-05-21 17:40:38 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Stantec\Resume_Stantec_Mechanical_Engineering_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 17:40:38 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\stantec_mechanical_engineering_intern.json
+2026-05-21 17:40:38 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 17:40:38 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 17:40:38 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Stantec\Mechanical Engineering Intern
+2026-05-21 17:40:38 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Stantec\Mechanical Engineering Intern\Ernesto_Carlton_Resume_Stantec_Mechanical_Engineering_Intern.docx
+2026-05-21 17:40:38 ERROR [resume.pipeline] Run failed
+Traceback (most recent call last):
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 225, in run_pipeline
+    pdf_path = convert_docx_to_pdf(docx_path, pdf_path_for_docx(docx_path))
+  File "C:\Users\EMCar\Desktop\Resume Script\Modules\Pdf_Engine.py", line 57, in convert_docx_to_pdf
+    convert(str(docx_path), str(out_pdf))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\docx2pdf\__init__.py", line 106, in convert
+    return windows(paths, keep_active)
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\docx2pdf\__init__.py", line 33, in windows
+    doc.SaveAs(str(pdf_filepath), FileFormat=wdFormatPDF)
+    ^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\win32com\client\dynamic.py", line 631, in __getattr__
+    raise AttributeError(f"{self._username_}.{attr}")
+AttributeError: Open.SaveAs
+2026-05-21 17:41:41 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Stantec\Resume_Stantec_Mechanical_Engineering_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 17:41:41 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\stantec_mechanical_engineering_intern.json
+2026-05-21 17:41:41 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 17:41:41 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 17:41:41 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Stantec\Mechanical Engineering Intern
+2026-05-21 17:41:41 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Stantec\Mechanical Engineering Intern\Ernesto_Carlton_Resume_Stantec_Mechanical_Engineering_Intern_2.docx
+2026-05-21 17:41:45 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Stantec\Mechanical Engineering Intern\Ernesto_Carlton_Resume_Stantec_Mechanical_Engineering_Intern_2.pdf
+2026-05-21 17:41:45 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 17:41:45 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

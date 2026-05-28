@@ -1,0 +1,68 @@
+2026-05-21 18:52:04 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\ITW\Resume_ITW_Manufacturing_Engineer_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 18:52:04 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\itw_manufacturing_engineer_intern.json
+2026-05-21 18:52:04 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 18:52:04 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 18:52:04 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern
+2026-05-21 18:52:04 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Resume_ITW_Manufacturing_Engineer_Intern.docx
+2026-05-21 18:52:05 ERROR [resume.pipeline] Run failed
+Traceback (most recent call last):
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 225, in run_pipeline
+    pdf_path = convert_docx_to_pdf(docx_path, pdf_path_for_docx(docx_path))
+  File "C:\Users\EMCar\Desktop\Resume Script\Modules\Pdf_Engine.py", line 57, in convert_docx_to_pdf
+    convert(str(docx_path), str(out_pdf))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\docx2pdf\__init__.py", line 106, in convert
+    return windows(paths, keep_active)
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\docx2pdf\__init__.py", line 33, in windows
+    doc.SaveAs(str(pdf_filepath), FileFormat=wdFormatPDF)
+    ^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\win32com\client\dynamic.py", line 631, in __getattr__
+    raise AttributeError(f"{self._username_}.{attr}")
+AttributeError: Open.SaveAs
+2026-05-21 18:55:41 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\ITW\Resume_ITW_Manufacturing_Engineer_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 18:55:41 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\itw_manufacturing_engineer_intern.json
+2026-05-21 18:55:41 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 18:55:41 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 18:55:41 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern
+2026-05-21 18:55:41 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Resume_ITW_Manufacturing_Engineer_Intern_2.docx
+2026-05-21 18:55:46 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Resume_ITW_Manufacturing_Engineer_Intern_2.pdf
+2026-05-21 18:55:46 INFO [resume.pipeline] Trim: removed bullet from greenway: Managed equipment inventory, scheduling, logistics, and reliability needs across active job sites.
+2026-05-21 18:55:50 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 18:55:50 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 19:10:22 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\ITW\Resume_ITW_Manufacturing_Engineer_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 19:10:22 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\itw_manufacturing_engineer_intern_updated.json
+2026-05-21 19:10:22 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 19:10:22 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 19:10:22 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern
+2026-05-21 19:10:22 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Resume_ITW_Manufacturing_Engineer_Intern_3.docx
+2026-05-21 19:10:23 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Resume_ITW_Manufacturing_Engineer_Intern_3.pdf
+2026-05-21 19:10:23 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 19:10:23 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 20:58:47 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\ITW\Resume_ITW_Manufacturing_Engineer_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 20:58:47 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\itw_manufacturing_engineer_intern_resume.json
+2026-05-21 20:58:47 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 20:58:47 ERROR [resume.pipeline] Bullet validation failed: ERROR windturbine_bullets[4]: 201 characters (max 200)
+2026-05-21 20:58:47 ERROR [resume.pipeline] Run failed
+Traceback (most recent call last):
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 212, in run_pipeline
+    _raise_validation_error(validation)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 106, in _raise_validation_error
+    raise ValueError(f"JSON validation failed:\n{detail}")
+ValueError: JSON validation failed:
+  - ERROR windturbine_bullets[4]: 201 characters (max 200)
+2026-05-21 20:59:05 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\ITW\Resume_ITW_Manufacturing_Engineer_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 20:59:05 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\itw_manufacturing_engineer_intern_resume.json
+2026-05-21 20:59:05 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 20:59:05 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 20:59:05 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern
+2026-05-21 20:59:05 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Resume_ITW_Manufacturing_Engineer_Intern_4.docx
+2026-05-21 20:59:10 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\ITW\Manufacturing Engineer Intern\Ernesto_Carlton_Resume_ITW_Manufacturing_Engineer_Intern_4.pdf
+2026-05-21 20:59:10 INFO [resume.pipeline] Trim: removed bullet from greenway: Performed mechanical diagnostics, equipment repair, and operational troubleshooting while coordinating workflow efficiency, maintenance reliability, and client service execution.
+2026-05-21 20:59:14 INFO [resume.pipeline] Trim: removed bullet from windturbine: Reviewed mechanical and electrical subsystem integration including power distribution, inverter configurations, and equipment layouts to support operational analysis and maintenance planning workflows.
+2026-05-21 20:59:18 INFO [resume.pipeline] Trim: removed bullet from peizo: Validated actuator integration concepts through CAD modeling, structural analysis, and fabrication-oriented design practices supporting repeatable installation and laboratory testing procedures.
+2026-05-21 20:59:22 INFO [resume.pipeline] Trim: removed bullet from mostardi: Maintained precision sampling equipment under demanding field conditions while validating data integrity, troubleshooting failures, and supporting process-driven operational workflows.
+2026-05-21 20:59:24 INFO [resume.pipeline] Trim: removed bullet from goose: Optimized embedded detection-to-actuation workflows using CAD-based mechanical integration, precision motor control, and iterative troubleshooting to improve field reliability and maintainability.
+2026-05-21 20:59:26 INFO [resume.pipeline] Trim: removed bullet from greenway: Managed landscaping operations including scheduling, equipment logistics, and preventive maintenance for mechanical systems, 2-stroke engines, and field service equipment.
+2026-05-21 20:59:30 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 20:59:30 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

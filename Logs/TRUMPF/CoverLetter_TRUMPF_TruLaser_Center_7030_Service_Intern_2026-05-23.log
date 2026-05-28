@@ -1,0 +1,9 @@
+2026-05-23 23:26:45 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\TRUMPF\CoverLetter_TRUMPF_TruLaser_Center_7030_Service_Intern_2026-05-23.log (document_type=cover_letter)
+2026-05-23 23:26:45 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Downloads\cover_letter (2).json
+2026-05-23 23:26:45 INFO [resume.cover_letter] Cover letter validation passed
+2026-05-23 23:26:45 INFO [resume.cover_letter] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\TRUMPF\TruLaser Center 7030 Service Intern
+2026-05-23 23:26:45 INFO [resume.cover_letter] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\TRUMPF\TruLaser Center 7030 Service Intern\Ernesto_Carlton_Cover_Letter_TRUMPF_TruLaser_Center_7030_Service_Intern.docx
+2026-05-23 23:26:49 INFO [resume.cover_letter] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\TRUMPF\TruLaser Center 7030 Service Intern\Ernesto_Carlton_Cover_Letter_TRUMPF_TruLaser_Center_7030_Service_Intern.pdf
+2026-05-23 23:26:49 WARNING [resume.cover_letter] WARNING pages: 2 pages in Ernesto_Carlton_Cover_Letter_TRUMPF_TruLaser_Center_7030_Service_Intern.pdf (limit 1 for cover_letter)
+2026-05-23 23:26:49 INFO [resume.cover_letter] Page check (OVER LIMIT): 2 page(s) (limit 1)
+2026-05-23 23:26:49 INFO [resume.cover_letter] Cover letter run finished (over_page_limit=True, page_check_skipped=False)

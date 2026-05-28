@@ -1,0 +1,58 @@
+2026-05-21 18:50:49 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Snap-on\Resume_Snap-on_Engineering_Prototype_Development_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 18:50:49 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\snapon_engineering_intern.json
+2026-05-21 18:50:49 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 18:50:49 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 18:50:49 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern
+2026-05-21 18:50:49 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern\Ernesto_Carlton_Resume_Snap-on_Engineering_Prototype_Development_Intern.docx
+2026-05-21 18:50:50 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern\Ernesto_Carlton_Resume_Snap-on_Engineering_Prototype_Development_Intern.pdf
+2026-05-21 18:50:50 INFO [resume.pipeline] Trim: removed bullet from greenway: Managed operational logistics, maintenance scheduling, and equipment reliability across active job sites.
+2026-05-21 18:50:50 ERROR [resume.pipeline] Run failed
+Traceback (most recent call last):
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 228, in run_pipeline
+    page_result, bullets_trimmed = _trim_for_page_limit(
+                                   ~~~~~~~~~~~~~~~~~~~~^
+        resume_data, docx_path, template_path, cfg
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 177, in _trim_for_page_limit
+    convert_docx_to_pdf(docx_path, pdf_path)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\Modules\Pdf_Engine.py", line 57, in convert_docx_to_pdf
+    convert(str(docx_path), str(out_pdf))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\docx2pdf\__init__.py", line 106, in convert
+    return windows(paths, keep_active)
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\docx2pdf\__init__.py", line 33, in windows
+    doc.SaveAs(str(pdf_filepath), FileFormat=wdFormatPDF)
+    ^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\win32com\client\dynamic.py", line 631, in __getattr__
+    raise AttributeError(f"{self._username_}.{attr}")
+AttributeError: Open.SaveAs
+2026-05-21 18:58:59 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Snap-on\Resume_Snap-on_Engineering_Prototype_Development_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 18:58:59 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\snapon_engineering_intern.json
+2026-05-21 18:58:59 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 18:58:59 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 18:58:59 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern
+2026-05-21 18:58:59 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern\Ernesto_Carlton_Resume_Snap-on_Engineering_Prototype_Development_Intern_2.docx
+2026-05-21 18:59:00 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern\Ernesto_Carlton_Resume_Snap-on_Engineering_Prototype_Development_Intern_2.pdf
+2026-05-21 18:59:00 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 18:59:00 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 19:01:24 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Snap-on\Resume_Snap-on_Engineering_Prototype_Development_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 19:01:24 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\snapon_engineering_intern.json
+2026-05-21 19:01:24 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 19:01:24 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 19:01:24 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern
+2026-05-21 19:01:24 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern\Ernesto_Carlton_Resume_Snap-on_Engineering_Prototype_Development_Intern_3.docx
+2026-05-21 19:01:26 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern\Ernesto_Carlton_Resume_Snap-on_Engineering_Prototype_Development_Intern_3.pdf
+2026-05-21 19:01:26 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 19:01:26 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)
+2026-05-21 19:04:11 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Snap-on\Resume_Snap-on_Engineering_Prototype_Development_Intern_2026-05-21.log (document_type=resume)
+2026-05-21 19:04:11 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\snapon_engineering_intern.json
+2026-05-21 19:04:11 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 19:04:11 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 19:04:11 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern
+2026-05-21 19:04:11 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern\Ernesto_Carlton_Resume_Snap-on_Engineering_Prototype_Development_Intern_4.docx
+2026-05-21 19:04:16 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Snap-on\Engineering Prototype Development Intern\Ernesto_Carlton_Resume_Snap-on_Engineering_Prototype_Development_Intern_4.pdf
+2026-05-21 19:04:16 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 19:04:16 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

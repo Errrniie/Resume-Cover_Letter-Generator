@@ -1,0 +1,9 @@
+2026-05-21 16:56:20 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\DMG MORI\Resume_DMG_MORI_Engineering_Intern_–_Additive_Solutions_Research_and_Development_2026-05-21.log (document_type=resume)
+2026-05-21 16:56:20 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\dmg_mori_additive_solutions_resume.json
+2026-05-21 16:56:20 INFO [resume.pipeline] Metadata validation passed
+2026-05-21 16:56:20 INFO [resume.pipeline] Bullet validation passed
+2026-05-21 16:56:20 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\DMG MORI\Engineering Intern – Additive Solutions Research and Development
+2026-05-21 16:56:20 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\DMG MORI\Engineering Intern – Additive Solutions Research and Development\Ernesto_Carlton_Resume_DMG_MORI_Engineering_Intern_–_Additive_Solutions_Research_and_Development.docx
+2026-05-21 16:56:26 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\DMG MORI\Engineering Intern – Additive Solutions Research and Development\Ernesto_Carlton_Resume_DMG_MORI_Engineering_Intern_–_Additive_Solutions_Research_and_Development.pdf
+2026-05-21 16:56:26 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-21 16:56:26 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

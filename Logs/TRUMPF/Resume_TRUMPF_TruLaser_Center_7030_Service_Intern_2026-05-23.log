@@ -1,0 +1,15 @@
+2026-05-23 23:02:31 INFO [resume.resume] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\TRUMPF\Resume_TRUMPF_TruLaser_Center_7030_Service_Intern_2026-05-23.log (document_type=resume)
+2026-05-23 23:02:31 INFO [resume.pipeline] Run started; input=C:\Users\EMCar\Downloads\resume.json
+2026-05-23 23:02:31 INFO [resume.pipeline] Metadata validation passed
+2026-05-23 23:02:31 INFO [resume.pipeline] Bullet validation passed
+2026-05-23 23:02:31 INFO [resume.pipeline] Resume snapshot MD: C:\Users\EMCar\Desktop\Resume Script\Resume_MD\resume_003.md
+2026-05-23 23:02:31 INFO [resume.pipeline] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\TRUMPF\TruLaser Center 7030 Service Intern
+2026-05-23 23:02:31 INFO [resume.pipeline] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\TRUMPF\TruLaser Center 7030 Service Intern\Ernesto_Carlton_Resume_TRUMPF_TruLaser_Center_7030_Service_Intern.docx
+2026-05-23 23:02:37 INFO [resume.pipeline] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\TRUMPF\TruLaser Center 7030 Service Intern\Ernesto_Carlton_Resume_TRUMPF_TruLaser_Center_7030_Service_Intern.pdf
+2026-05-23 23:02:37 WARNING [resume.pipeline] WARNING pages: 2 pages in Ernesto_Carlton_Resume_TRUMPF_TruLaser_Center_7030_Service_Intern.pdf (limit 1 for resume)
+2026-05-23 23:02:37 INFO [resume.pipeline] Page check (OVER LIMIT): 2 page(s) (limit 1)
+2026-05-23 23:02:37 INFO [resume.pipeline] Trim: removed bullet from greenway: Coordinated daily operations across a 3-person field team while managing equipment logistics, scheduling, and reliability-focused maintenance planning.
+2026-05-23 23:02:41 INFO [resume.pipeline] Trim: removed bullet from windturbine: Performed six turbine inspections with engineering personnel while evaluating control systems, operational constraints, and equipment reliability under field conditions.
+2026-05-23 23:02:46 INFO [resume.pipeline] Trim: removed bullet from peizo: Collaborated on experimental validation of 16-slot actuator configurations operating near 63 Hz and 30 VPP to analyze performance consistency and hardware integration stability.
+2026-05-23 23:02:50 INFO [resume.pipeline] Page check (OK): 1 page(s) (limit 1)
+2026-05-23 23:02:50 INFO [resume.pipeline] Run finished successfully (over_page_limit=False, page_check_skipped=False)

@@ -1,0 +1,28 @@
+2026-05-23 18:54:25 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Tesla\CoverLetter_Tesla_Mechanical_Engineer_2026-05-23.log (document_type=cover_letter)
+2026-05-23 18:54:25 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Desktop\Resume Script\sample_cover_letter_data.json
+2026-05-23 18:54:25 INFO [resume.cover_letter] Cover letter validation passed
+2026-05-23 18:54:25 INFO [resume.cover_letter] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer
+2026-05-23 18:54:25 INFO [resume.cover_letter] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Cover_Letter_Tesla_Mechanical_Engineer.docx
+2026-05-23 18:54:27 INFO [resume.cover_letter] Created PDF: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Cover_Letter_Tesla_Mechanical_Engineer.pdf
+2026-05-23 18:54:27 INFO [resume.cover_letter] Page check (OK): 1 page(s) (limit 1)
+2026-05-23 18:54:27 INFO [resume.cover_letter] Cover letter run finished (over_page_limit=False, page_check_skipped=False)
+2026-05-23 18:54:40 INFO [resume.cover_letter] Logging to C:\Users\EMCar\Desktop\Resume Script\Logs\Tesla\CoverLetter_Tesla_Mechanical_Engineer_2026-05-23.log (document_type=cover_letter)
+2026-05-23 18:54:40 INFO [resume.cover_letter] Cover letter run started; input=C:\Users\EMCar\Desktop\Resume Script\sample_cover_letter_data.json
+2026-05-23 18:54:40 INFO [resume.cover_letter] Cover letter validation passed
+2026-05-23 18:54:40 INFO [resume.cover_letter] Application folder: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer
+2026-05-23 18:54:41 INFO [resume.cover_letter] Created DOCX: C:\Users\EMCar\Desktop\Resume Script\Applications\Tesla\Mechanical Engineer\Ernesto_Carlton_Cover_Letter_Tesla_Mechanical_Engineer_2.docx
+2026-05-23 18:54:41 ERROR [resume.cover_letter] Cover letter run failed
+Traceback (most recent call last):
+  File "C:\Users\EMCar\Desktop\Resume Script\Main.py", line 660, in run_cover_letter_pipeline
+    pdf_path = convert_docx_to_pdf(docx_path, pdf_path_for_docx(docx_path))
+  File "C:\Users\EMCar\Desktop\Resume Script\Modules\Pdf_Engine.py", line 67, in convert_docx_to_pdf
+    convert(str(docx_path), str(out_pdf))
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\docx2pdf\__init__.py", line 106, in convert
+    return windows(paths, keep_active)
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\docx2pdf\__init__.py", line 33, in windows
+    doc.SaveAs(str(pdf_filepath), FileFormat=wdFormatPDF)
+    ^^^^^^^^^^
+  File "C:\Users\EMCar\Desktop\Resume Script\.venv\Lib\site-packages\win32com\client\dynamic.py", line 631, in __getattr__
+    raise AttributeError(f"{self._username_}.{attr}")
+AttributeError: Open.SaveAs
